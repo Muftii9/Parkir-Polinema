@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot Parkir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        main {
+            width: 80%; /* Lebar konten agar tidak terlalu lebar */
+            padding: 20px;
+        }
+
+        .parking-area {
+            margin-bottom: 40px;
+        }
+
+        .area-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .parking-grid {
+            display: flex;
+            justify-content: space-between; /* Agar kotak berada di satu baris */
+            flex-wrap: nowrap; /* Memastikan kotak tetap satu baris */
+        }
+
+        .parking-spot {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 80px; /* Lebar kotak lebih kecil */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .parking-spot h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .available {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .occupied {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p>Spot Parkir</p>
+        <p>Menampilkan status tempat parkir</p>
+    </header>
+
+	<main>
+        <!-- Informasi Status -->
+        <div class="status-info">
+            <div id="availableSpots">Spots Tersedia: 0</div>
+            <div id="vehiclesIn">Kendaraan Masuk: 0</div>
+            <div id="vehiclesOut">Kendaraan Keluar: 0</div>
+			
+        <!-- Area Parkir 1 -->
+        <div class="parking-area">
+            <div class="area-title">Gedung AK-A</div>
+            <div class="parking-grid">
+                <!-- A1 hingga A6 -->
+                <div class="parking-spot">
+                    <h3>A1</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>A2</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>A3</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>A4</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>A5</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>A6</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Area Parkir 2 -->
+        <div class="parking-area">
+            <div class="area-title">Gedung AK-B</div>
+            <div class="parking-grid">
+                <!-- B1 hingga B8 -->
+                <div class="parking-spot">
+                    <h3>B1</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>B2</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>B3</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>B4</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>B5</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>B6</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Area Parkir 3 -->
+        <div class="parking-area">
+            <div class="area-title">Gedung Poliklinik</div>
+            <div class="parking-grid">
+                <!-- P1 hingga P6 -->
+                <div class="parking-spot">
+                    <h3>P1</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>P2</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>P3</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>P4</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>P5</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>P6</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+				<div class="parking-spot">
+                    <h3>P7</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+                <div class="parking-spot">
+                    <h3>P8</h3>
+                    <button class="available" onclick="changeStatus(this)">Tersedia</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        let availableSpots = 20;  // Total spots available, adjust this number based on the initial state
+        let vehiclesIn = 0;
+        let vehiclesOut = 0;
+
+        // Fungsi untuk mengubah status tempat parkir
+        function changeStatus(button) {
+            if (button.classList.contains('available')) {
+                // Jika spot parkir tersedia dan kendaraan masuk
+                button.classList.remove('available');
+                button.classList.add('occupied');
+                button.textContent = 'Terisi';
+
+                // Update status
+                availableSpots--;
+                vehiclesIn++;
+            } else {
+                // Jika spot parkir terisi dan kendaraan keluar
+                button.classList.remove('occupied');
+                button.classList.add('available');
+                button.textContent = 'Tersedia';
+
+                // Update status
+                availableSpots++;
+                vehiclesOut++;
+            }
+
+            // Update informasi di bagian atas dan bawah
+            document.getElementById("availableSpots").textContent = "Spots Tersedia: " + availableSpots;
+            document.getElementById("vehiclesIn").textContent = "Kendaraan Masuk: " + vehiclesIn;
+            document.getElementById("vehiclesOut").textContent = "Kendaraan Keluar: " + vehiclesOut;
+        }
+    </script>
+</body>
+</html>
